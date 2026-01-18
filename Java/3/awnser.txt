@@ -1,0 +1,10 @@
+Question 1:
+Program 2 had overall the best performance, being around 30% percent faster, increasing as the thread count on the computer increases.
+
+Question 2:
+Program1 perform its task in a structured manner, where a burst of download, analysis and then categorisation
+is performed as the ThreadPool cycles in and out the tasks, which follows the pattern of Program2, save for the fact that lower indexed webpages tend to be
+worked on first in the case of Program 1.
+
+Question 3:
+Program 1 was overall more performant as Program 3, being about 10% slower.
