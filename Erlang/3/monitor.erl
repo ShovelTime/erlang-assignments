@@ -1,4 +1,5 @@
 -module(monitor).
+-behaviour(supervisor).
 -export([start/0, init/1]).
 
 start() ->
@@ -7,21 +8,23 @@ start() ->
 	
 
 
-monitor_loop() ->
-    process_flag(trap_exit, true),
-    Pid  = double:start(),
-    link(Pid),
-    Ref = monitor(process, Pid),
-    receive
-        {'DOWN', Ref, process, Pid, _} ->
-            demonitor(Ref),
-            monitor_loop()    
-    end.
+%monitor_loop() ->
+%    process_flag(trap_exit, true),
+%    Pid  = double:start(),
+%    link(Pid),
+%    Ref = monitor(process, Pid),
+%    receive
+%        {'DOWN', Ref, process, Pid, _} ->
+%            demonitor(Ref),
+%            monitor_loop()    
+%    end.
 
 init(_) ->
-	{ok, {#{strategy => simple_one_for_one}, [#{ 
+	{ok, {#{strategy => one_for_one}, [#{ 
 			id => double,
-			start => {double, start, {}}
+			start => {double, start,[]},
+			restart => permanent,
+			shutdown => brutal_kill
 		}]
 	     }
 	}. 
