@@ -49,5 +49,5 @@ concat_lists([_ | L], Acc) ->
 concat_lists_ord([], Acc) -> Acc;
 concat_lists_ord([Pid | L], Acc) -> 
     receive
-        {Pid, Res} -> concat_lists(L, Res ++ Acc)
+        {Pid, Res} -> concat_lists(L, Acc ++ Res)
     end.
