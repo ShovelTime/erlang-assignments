@@ -25,7 +25,7 @@ unordered(F, L, T) ->
 ordered(F, L, T) ->
    Workers = min(T length(L)),
    Res = queue_workers(F,L, Workers, Workers, []) 
-   concat_lists_ord(, []).
+   concat_lists_ord(lists:reverse(Res), []).
 
 worker_r(_, [], Acc) -> Acc;
 worker_r(F, [E | L], Acc) ->
